@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ee5a6f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient)"/>
+  
+  <!-- Party hat -->
+  <path d="M 200 180 L 256 120 L 312 180 L 300 280 L 212 280 Z" fill="url(#hatGradient)" stroke="#fff" stroke-width="3"/>
+  <circle cx="256" cy="120" r="8" fill="#ffd93d"/>
+  <line x1="256" y1="120" x2="256" y2="180" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Bitcoin symbol -->
+  <circle cx="256" cy="320" r="60" fill="#f7931a" stroke="#fff" stroke-width="4"/>
+  <path d="M 256 280 L 286 290 L 286 310 L 256 300 L 226 310 L 226 290 Z" fill="#fff"/>
+  <path d="M 256 300 L 286 310 L 286 330 L 256 320 L 226 330 L 226 310 Z" fill="#fff"/>
+  <path d="M 256 280 L 286 290 L 256 300 L 226 290 Z" fill="#f7931a"/>
+  <path d="M 256 300 L 286 310 L 256 320 L 226 310 Z" fill="#f7931a"/>
+  
+  <!-- Confetti pieces -->
+  <circle cx="150" cy="150" r="6" fill="#ffd93d"/>
+  <circle cx="380" cy="180" r="5" fill="#4ecdc4"/>
+  <circle cx="120" cy="250" r="4" fill="#ff6b6b"/>
+  <circle cx="400" cy="280" r="5" fill="#95e1d3"/>
+  <rect x="160" y="380" width="8" height="8" fill="#ffd93d" transform="rotate(45 164 384)"/>
+  <rect x="340" y="360" width="6" height="6" fill="#4ecdc4" transform="rotate(45 343 363)"/>
+</svg>

@@ -1,0 +1,64 @@
+services:
+  app_proxy:
+    environment:
+      APP_HOST: server
+      APP_PORT: 3334
+
+  server:
+    image: iemanuel18/pool-party:latest
+    user: "1001:1001"
+    init: true
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=${APP_POSTGRES_PASSWORD}
+      - DB_DATABASE=pool_party
+      - PARTY_SOLO_ENABLED=${APP_PARTY_SOLO_ENABLED:-true}
+      - CORE_WALLET_ADDRESS=${APP_CORE_WALLET_ADDRESS}
+      - SHARE_WINDOW_MINUTES=${APP_SHARE_WINDOW_MINUTES:-10}
+      - REWARD_CONFIRMATIONS=${APP_REWARD_CONFIRMATIONS:-6}
+      - BITCOIN_RPC_URL=${APP_BITCOIN_RPC_URL:-http://localhost}
+      - BITCOIN_RPC_USER=${APP_BITCOIN_RPC_USER:-}
+      - BITCOIN_RPC_PASSWORD=${APP_BITCOIN_RPC_PASSWORD:-}
+      - BITCOIN_RPC_PORT=${APP_BITCOIN_RPC_PORT:-8332}
+      - API_PORT=3334
+      - STRATUM_PORT=3333
+      - NETWORK=${APP_NETWORK:-mainnet}
+      - NODE_ENV=production
+      - HEALTH_PORT=3000
+    volumes:
+      - app-data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "
+        echo 'Waiting for database...' &&
+        until nc -z postgres 5432; do sleep 1; done &&
+        echo 'Database ready!' &&
+        echo 'Initializing database schema...' &&
+        ts-node src/scripts/init-db.ts || true &&
+        echo 'Starting application...' &&
+        node dist/main.js
+      "
+
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${APP_POSTGRES_PASSWORD}
+      - POSTGRES_DB=pool_party
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  app-data:
+  postgres-data:
+
