@@ -7,10 +7,12 @@ services:
 
   server:
     image: iemanuel18/pool-party:latest
+    hostname: pool-party
     restart: on-failure
     stop_grace_period: 30s
-    user: "1001:1001"
     init: true
+    expose:
+      - "3333"
     volumes:
       - "${APP_DATA_DIR}/data:/app/data"
     environment:
@@ -23,6 +25,7 @@ services:
       - API_PORT=3334
       - STRATUM_PORT=3333
       - NETWORK=${APP_NETWORK:-mainnet}
+      - STRATUM_DEFAULT_DIFFICULTY=${APP_STRATUM_DIFFICULTY:-1024}
       - API_SECURE=false
       - ENABLE_SOLO=true
       - ENABLE_PROXY=false
@@ -39,16 +42,15 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    command: >
-      sh -c "
-        echo 'Waiting for database...' &&
-        until nc -z postgres 5432; do sleep 1; done &&
-        echo 'Database ready!' &&
-        echo 'Initializing database schema...' &&
-        ts-node src/scripts/init-db.ts || true &&
-        echo 'Starting application...' &&
-        node dist/main.js
-      "
+
+  stratum-proxy:
+    image: alpine/socat:latest
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    command: "tcp-listen:3333,fork,reuseaddr tcp-connect:server:3333"
+    depends_on:
+      - server
 
   postgres:
     image: postgres:15-alpine
