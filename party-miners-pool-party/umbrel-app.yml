@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.2"
+version: "1.0.3"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -39,7 +39,8 @@ path: ""
 
 releaseNotes: >-
   - Added Stratum TCP proxy service to expose port 3333 for miner connectivity
-  - Added configurable STRATUM_DEFAULT_DIFFICULTY
+  - Added configurable Bitcoin Network dropdown (Mainnet, Testnet, Regtest, Signet)
+  - Added configurable Stratum Difficulty setting for easier testing
   - Improved server status reporting with RPC connectivity checks
   - Fixed Stratum port mapping using dedicated proxy container
 
