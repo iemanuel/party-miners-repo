@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.1"
+version: "1.0.2"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,9 +38,10 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  - Fixed Stratum port 3333 exposure for miner connectivity
+  - Added Stratum TCP proxy service to expose port 3333 for miner connectivity
   - Added configurable STRATUM_DEFAULT_DIFFICULTY
   - Improved server status reporting with RPC connectivity checks
+  - Fixed Stratum port mapping using dedicated proxy container
 
 defaultPassword: ""
 
