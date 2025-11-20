@@ -2,17 +2,13 @@ manifestVersion: 1
 
 id: party-miners-pool-party
 
+category: bitcoin
+
 name: Pool Party
-
-tagline: Party Solo Pool - Share-based Bitcoin mining pool
-
-icon: https://raw.githubusercontent.com/iemanuel/party-miners-repo/main/party-miners-pool-party/icon.svg
-
-category: Blockchain Mining
 
 version: "1.0.0"
 
-port: 3334
+tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
 description: >-
   Party Solo Pool - Share-based Bitcoin mining pool.
@@ -23,25 +19,26 @@ developer: iemanuel
 
 website: https://github.com/iemanuel/public-pool-party
 
-submitter: iemanuel
-
-submission: https://github.com/iemanuel/public-pool-party
+dependencies:
+  - bitcoin
 
 repo: https://github.com/iemanuel/public-pool-party
 
 support: https://github.com/iemanuel/public-pool-party/issues
 
+port: 3334
+
 gallery: []
+
+path: ""
 
 releaseNotes: >-
   Initial release.
 
-dependencies:
-  - postgres
-
-path: ""
-
-defaultUsername: ""
-
 defaultPassword: ""
 
+submitter: iemanuel
+
+submission: https://github.com/iemanuel/public-pool-party
+
+icon: https://raw.githubusercontent.com/iemanuel/party-miners-repo/main/party-miners-pool-party/icon.svg

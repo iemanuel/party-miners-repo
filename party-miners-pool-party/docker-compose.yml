@@ -1,34 +1,41 @@
 services:
   app_proxy:
     environment:
-      APP_HOST: server
-      APP_PORT: 3334
+      APP_HOST: proxy
+      APP_PORT: 80
+      PROXY_AUTH_WHITELIST: "/api/*"
 
   server:
     image: iemanuel18/pool-party:latest
+    restart: on-failure
+    stop_grace_period: 30s
     user: "1001:1001"
     init: true
+    volumes:
+      - "${APP_DATA_DIR}/data:/app/data"
     environment:
+      - NODE_ENV=production
+      - BITCOIN_RPC_URL=http://${APP_BITCOIN_NODE_IP}
+      - BITCOIN_RPC_USER=${APP_BITCOIN_RPC_USER}
+      - BITCOIN_RPC_PASSWORD=${APP_BITCOIN_RPC_PASS}
+      - BITCOIN_RPC_PORT=${APP_BITCOIN_RPC_PORT}
+      - BITCOIN_RPC_TIMEOUT=10000
+      - API_PORT=3334
+      - STRATUM_PORT=3333
+      - NETWORK=mainnet
+      - API_SECURE=false
+      - ENABLE_SOLO=true
+      - ENABLE_PROXY=false
+      - POOL_IDENTIFIER="Pool Party on Umbrel"
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_USERNAME=postgres
-      - DB_PASSWORD=${APP_POSTGRES_PASSWORD}
+      - DB_PASSWORD=${APP_POSTGRES_PASSWORD:-poolparty123}
       - DB_DATABASE=pool_party
       - PARTY_SOLO_ENABLED=${APP_PARTY_SOLO_ENABLED:-true}
       - CORE_WALLET_ADDRESS=${APP_CORE_WALLET_ADDRESS}
       - SHARE_WINDOW_MINUTES=${APP_SHARE_WINDOW_MINUTES:-10}
       - REWARD_CONFIRMATIONS=${APP_REWARD_CONFIRMATIONS:-6}
-      - BITCOIN_RPC_URL=${APP_BITCOIN_RPC_URL:-http://localhost}
-      - BITCOIN_RPC_USER=${APP_BITCOIN_RPC_USER:-}
-      - BITCOIN_RPC_PASSWORD=${APP_BITCOIN_RPC_PASSWORD:-}
-      - BITCOIN_RPC_PORT=${APP_BITCOIN_RPC_PORT:-8332}
-      - API_PORT=3334
-      - STRATUM_PORT=3333
-      - NETWORK=${APP_NETWORK:-mainnet}
-      - NODE_ENV=production
-      - HEALTH_PORT=3000
-    volumes:
-      - app-data:/app/data
     depends_on:
       postgres:
         condition: service_healthy
@@ -43,12 +50,20 @@ services:
         node dist/main.js
       "
 
+  proxy:
+    image: nginx:1.25.3@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac
+    volumes:
+      - ${APP_DATA_DIR}/data/proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - server
+    restart: on-failure
+
   postgres:
     image: postgres:15-alpine
     restart: unless-stopped
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${APP_POSTGRES_PASSWORD}
+      - POSTGRES_PASSWORD=${APP_POSTGRES_PASSWORD:-poolparty123}
       - POSTGRES_DB=pool_party
     volumes:
       - postgres-data:/var/lib/postgresql/data
@@ -59,6 +74,4 @@ services:
       retries: 5
 
 volumes:
-  app-data:
   postgres-data:
-
