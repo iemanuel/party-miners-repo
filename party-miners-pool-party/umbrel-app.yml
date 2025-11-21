@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.21"
+version: "1.0.23"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,29 +38,35 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🎨 NEW: Custom Party Pool UI Dashboard!
+  🐛 v1.0.23 - Critical Fix: Umbrel App Proxy Connection
+  - ✅ FIXED: Exposed port 3334 in docker-compose for app_proxy connection
+  - ✅ Resolves CORS/connection issues in Umbrel environment
+  - Now API calls work correctly through Umbrel's app_proxy
+  
+  Previous (v1.0.22):
+  - ✅ Fixed UI asset loading - all styles and themes now load correctly
+  - ✅ Added server logs display on homepage (real-time Stratum activity)
+  - ✅ Enhanced environment variable configuration (all vars documented)
+  - ✅ Production Docker image optimized and published to Docker Hub
+  - ✅ Improved error handling for Bitcoin RPC connectivity
+  - 📝 Complete ENV_VARIABLES.md documentation added
+  
+  🎨 Party Pool UI Features:
   - Built custom party-pool-ui Angular dashboard with real-time monitoring
   - Shows Stratum connection info with copy-paste ready URL and connection instructions
   - Displays all service statuses (Web, Stratum, Database, Bitcoin RPC) with color-coded indicators
   - Pool statistics dashboard (total miners, shares, balance, pool status)
+  - Server logs section showing real-time Stratum events
   - Configuration display (network, difficulty, wallets, share window, confirmations)
   - Auto-refresh every 5 seconds for live updates
   - Modern gradient UI with responsive card layout
-  - Reused utility components from public-pool-ui for consistency
   
-  💰 Donation Support:
-  - Added donation wallet configuration (default: bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh)
-  - Can be overridden via APP_DONATION_WALLET_ADDRESS environment variable
-  - Wallet address displayed on dashboard (masked for privacy)
-  
-  ✅ All features from v1.0.19 maintained:
+  ✅ All core features maintained:
   - Full Stratum v1 server with mining.configure and mining.extranonce.subscribe support
   - Accepts ALL shares (any difficulty) for comprehensive mining activity tracking
   - Real-time hashrate calculation per miner
-  - Bitcoin RPC using rpc-bitcoin library (same as base-pool)
-  - Difficulty calculation using base-pool's proven big.js implementation
+  - Share-based reward distribution
   - Configurable network (Mainnet/Testnet/Regtest/Signet) and difficulty
-  - Dedicated Stratum TCP proxy on port 3333
 
 defaultPassword: ""
 
