@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.2"
+version: "1.1.0"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -21,12 +21,22 @@ description: >-
   - ✅ Cookie file authentication support
   - ✅ Proper error handling and logging
   
+  **Phase 2 Part A Features:**
+  - ✅ Dashboard UI with real-time status updates
+  - ✅ Connection status card (Bitcoin node status, block height, sync progress)
+  - ✅ Stratum connection info card with connection instructions
+  - ✅ Real-time log streaming via Server-Sent Events
+  - ✅ API endpoint for stratum info (`/api/stratum-info`)
+  - ✅ Configurable ports via environment variables
+  
   **Configuration:**
   - Bitcoin RPC credentials are auto-configured when Bitcoin app is installed
   - Supports cookie file authentication via `BITCOIN_RPC_COOKIEFILE`
   - Network: mainnet (configurable via `NETWORK` env var)
+  - API port: 3334 (configurable via `APP_API_PORT`)
+  - Stratum port: 3333 (configurable via `APP_STRATUM_PORT`)
   
-  **Coming Soon (Phase 2):**
+  **Coming Soon (Phase 2 Part B):**
   - Stratum server for miner connections
   - Share tracking and validation
   - Block submission when valid share found
@@ -49,13 +59,21 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🚀 v1.0.2 - Cleanup Release (Phase 1)
+  🚀 v1.1.0 - Dashboard UI Release (Phase 2 Part A)
   
-  **Improvements:**
-  - ✅ Cleaned up configuration to use only working environment variables
-  - ✅ Simplified BitcoinRpcClient to match standard implementation pattern
-  - ✅ Removed unnecessary fallback logic and debug logging
-  - ✅ Code now matches base-pool reference implementation
+  **New Features:**
+  - ✅ Dashboard UI with real-time status updates
+  - ✅ Connection status card showing Bitcoin node status, block height, and sync progress
+  - ✅ Stratum connection info card with connection instructions for miners
+  - ✅ Real-time log streaming via Server-Sent Events (`/api/logs/stream`)
+  - ✅ API endpoint for stratum connection info (`/api/stratum-info`)
+  - ✅ Configurable ports via `APP_API_PORT` and `APP_STRATUM_PORT` environment variables
+  
+  **Previous Release (v1.0.2):**
+  - Cleaned up configuration to use only working environment variables
+  - Simplified BitcoinRpcClient to match standard implementation pattern
+  - Removed unnecessary fallback logic and debug logging
+  - Code now matches base-pool reference implementation
   
   **Previous Release (v1.0.1):**
   - Enhanced Bitcoin RPC connection with cookie file support

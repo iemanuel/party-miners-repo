@@ -4,7 +4,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: server
-      APP_PORT: 3334
+      APP_PORT: ${APP_API_PORT:-3334}
       PROXY_AUTH_WHITELIST: "/api/*"
     depends_on:
       - server
@@ -16,7 +16,7 @@ services:
     stop_grace_period: 30s
     init: true
     expose:
-      - "3334"
+      - "${APP_API_PORT:-3334}"
     volumes:
       - "${APP_DATA_DIR}/data:/app/data"
     environment:
@@ -29,7 +29,8 @@ services:
       - BITCOIN_RPC_PORT=${APP_BITCOIN_RPC_PORT}
       - BITCOIN_RPC_TIMEOUT=10000
       # API and server ports
-      - API_PORT=3334
+      - API_PORT=${APP_API_PORT:-3334}
+      - STRATUM_PORT=${APP_STRATUM_PORT:-3333}
       # Pool configuration
       - NETWORK=mainnet
       - API_SECURE=false
