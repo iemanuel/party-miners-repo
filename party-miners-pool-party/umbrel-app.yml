@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.5"
+version: "1.0.10"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,6 +38,17 @@ gallery: []
 path: ""
 
 releaseNotes: >-
+  - Added support for mining.extranonce.subscribe method (Stratum V1 extension)
+  - Added binary/SSL detection to identify miners trying to connect with SSL/TLS (server only supports plain TCP)
+  - Improved error messages for invalid protocol connections with hex preview
+  - Added hashrate calculation and display for each miner (based on recent shares)
+  - Added support for mining.configure method (Stratum V1 extension)
+  - Enhanced disconnection debugging with detailed diagnostics (duration, reason, state, activity)
+  - Improved message queue to prevent JSON parsing errors
+  - Added connection tracking (connection time, last activity, disconnect reason)
+  - Fixed "Extra data" JSON parsing error by properly separating authorization messages
+  - Improved message buffering to prevent multiple JSON messages from being concatenated
+  - Enhanced error logging for better debugging of miner connection issues
   - Added real-time Stratum Activity Log with live streaming of miner connections, authorizations, and share submissions
   - All shares are now recorded (including rejected ones) for better visibility
   - Miners now appear in dashboard immediately upon connection (not just after submitting shares)
