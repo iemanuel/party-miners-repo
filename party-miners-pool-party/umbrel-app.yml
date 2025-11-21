@@ -6,18 +6,19 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.25"
+version: "1.0.0"
 
-tagline: Party Solo Pool - Share-based Bitcoin mining pool
+tagline: Party Solo Pool - Bitcoin RPC Status API
 
 description: >-
-  Party Solo Pool - Share-based Bitcoin mining pool.
+  Party Solo Pool - Simple API to check Bitcoin node connection status.
   
-  All miners mine together, rewards divided by shares.
+  **Features:**
+  - Connects to Bitcoin node via Umbrel dependency
+  - Returns connection status and blockchain info
+  - Health check endpoint
   
   **Configuration:**
-  - Set APP_CORE_WALLET_ADDRESS in docker-compose.yml (required for pool functionality)
-  - APP_POSTGRES_PASSWORD defaults to "poolparty123" (change for production)
   - Bitcoin RPC credentials are auto-configured when Bitcoin app is installed
 
 developer: iemanuel
@@ -38,44 +39,12 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🚀 v1.0.25 - Real-time Logs & RPC Status Improvements
-  - ✅ Real-time server logs via Server-Sent Events (SSE)
-  - ✅ Log pruning at 500 entries (was 1000)
-  - ✅ Improved RPC connection error handling and logging
-  - ✅ Enhanced sync status display with progress percentage
-  - ✅ Better warnings when mining jobs unavailable (RPC disconnected/unsynced)
-  
-  Previous (v1.0.24):
-  - ✅ Changed default network to testnet for safer testing
-  - ✅ Fixed Stratum port display (3333 instead of 3336)
-  - ✅ Fixed API URL configuration in production builds
-  
-  Previous (v1.0.23):
-  - ✅ FIXED: Exposed port 3334 in docker-compose for app_proxy connection
-  - ✅ Resolves CORS/connection issues in Umbrel environment
-  - ✅ Fixed UI asset loading - all styles and themes now load correctly
-  - ✅ Added server logs display on homepage (real-time Stratum activity)
-  - ✅ Enhanced environment variable configuration (all vars documented)
-  - ✅ Production Docker image optimized and published to Docker Hub
-  - ✅ Improved error handling for Bitcoin RPC connectivity
-  - 📝 Complete ENV_VARIABLES.md documentation added
-  
-  🎨 Party Pool UI Features:
-  - Built custom party-pool-ui Angular dashboard with real-time monitoring
-  - Shows Stratum connection info with copy-paste ready URL and connection instructions
-  - Displays all service statuses (Web, Stratum, Database, Bitcoin RPC) with color-coded indicators
-  - Pool statistics dashboard (total miners, shares, balance, pool status)
-  - Server logs section showing real-time Stratum events
-  - Configuration display (network, difficulty, wallets, share window, confirmations)
-  - Auto-refresh every 5 seconds for live updates
-  - Modern gradient UI with responsive card layout
-  
-  ✅ All core features maintained:
-  - Full Stratum v1 server with mining.configure and mining.extranonce.subscribe support
-  - Accepts ALL shares (any difficulty) for comprehensive mining activity tracking
-  - Real-time hashrate calculation per miner
-  - Share-based reward distribution
-  - Configurable network (Mainnet/Testnet/Regtest/Signet) and difficulty
+  🚀 v1.0.0 - Initial Release
+  - ✅ Simple API server for Bitcoin RPC status
+  - ✅ Connects to Bitcoin node via Umbrel dependency
+  - ✅ Health check endpoint
+  - ✅ Bitcoin node status endpoint with connection info, block height, and sync progress
+  - ✅ Proper error handling and logging
 
 defaultPassword: ""
 
