@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.23"
+version: "1.0.25"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,12 +38,21 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🐛 v1.0.23 - Critical Fix: Umbrel App Proxy Connection
+  🚀 v1.0.25 - Real-time Logs & RPC Status Improvements
+  - ✅ Real-time server logs via Server-Sent Events (SSE)
+  - ✅ Log pruning at 500 entries (was 1000)
+  - ✅ Improved RPC connection error handling and logging
+  - ✅ Enhanced sync status display with progress percentage
+  - ✅ Better warnings when mining jobs unavailable (RPC disconnected/unsynced)
+  
+  Previous (v1.0.24):
+  - ✅ Changed default network to testnet for safer testing
+  - ✅ Fixed Stratum port display (3333 instead of 3336)
+  - ✅ Fixed API URL configuration in production builds
+  
+  Previous (v1.0.23):
   - ✅ FIXED: Exposed port 3334 in docker-compose for app_proxy connection
   - ✅ Resolves CORS/connection issues in Umbrel environment
-  - Now API calls work correctly through Umbrel's app_proxy
-  
-  Previous (v1.0.22):
   - ✅ Fixed UI asset loading - all styles and themes now load correctly
   - ✅ Added server logs display on homepage (real-time Stratum activity)
   - ✅ Enhanced environment variable configuration (all vars documented)
