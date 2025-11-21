@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.13"
+version: "1.0.19"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,6 +38,22 @@ gallery: []
 path: ""
 
 releaseNotes: >-
+  - Integrated public-pool-ui Angular dashboard (replaced old HTML interface)
+  - Added API adapter endpoints to match Angular UI expectations (/api/info, /api/network, /api/client/:address, etc.)
+  - Angular UI now connects to Party Pool API with full dashboard, charts, and miner statistics
+  - Old HTML interface removed - now using professional Angular dashboard from public-pool
+  - Replaced custom difficulty calculation with base-pool's proven implementation (exact copy)
+  - Replaced custom Bitcoin RPC client with rpc-bitcoin library (same as base-pool uses)
+  - This ensures difficulty calculations match industry-standard implementations
+  - Changed share validation: Now accepts ALL shares regardless of difficulty (supports any miner hashrate)
+  - Shares are still calculated for stats/display, but no longer rejected based on difficulty threshold
+  - This allows the pool to track all mining activity from any miner, regardless of their hashrate
+  - Fixed difficulty calculation: Fixed mantissa normalization in logarithm calculation (mantissa now properly normalized to 0-1 range)
+  - Difficulty calculation now correctly uses: log10(difficulty) = log10(DIFF1_TARGET) - log10(hashValue) with proper mantissa/exponent separation
+  - Fixed difficulty calculation: Now uses logarithm-based calculation to handle very large hash values (prevents BigInt truncation to 0)
+  - Added Bitcoin node sync status checking (shows sync progress in server status)
+  - Added comprehensive debug logging for share submissions: parameters, block header construction, hash calculation, and difficulty calculation steps
+  - Debug logs now show: share params (jobId, extranonce2, ntime, nonce), block header details (version, prevHash, merkleRoot, timestamp, bits, nonce), hash value, and final difficulty calculation
   - Fixed difficulty calculation: Now uses high-precision scale (1e18) to prevent BigInt truncation to 0
   - Added detailed debug logging for difficulty calculation failures
   - Fixed difficulty calculation bug: BigInt division was truncating to 0, now uses floating-point division
