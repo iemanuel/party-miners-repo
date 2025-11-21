@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+Make sure you reuse as much as we can from submodules basepool and public-pool ui 
+allwasy upate the readme so we keep context 
+user want a party pool extension to the solo public pool implementation
+it will be run in docker as an umbrel app 
+keep everything short
