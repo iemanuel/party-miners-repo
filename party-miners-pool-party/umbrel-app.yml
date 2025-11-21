@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.19"
+version: "1.0.20"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,47 +38,29 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  - Integrated public-pool-ui Angular dashboard (replaced old HTML interface)
-  - Added API adapter endpoints to match Angular UI expectations (/api/info, /api/network, /api/client/:address, etc.)
-  - Angular UI now connects to Party Pool API with full dashboard, charts, and miner statistics
-  - Old HTML interface removed - now using professional Angular dashboard from public-pool
-  - Replaced custom difficulty calculation with base-pool's proven implementation (exact copy)
-  - Replaced custom Bitcoin RPC client with rpc-bitcoin library (same as base-pool uses)
-  - This ensures difficulty calculations match industry-standard implementations
-  - Changed share validation: Now accepts ALL shares regardless of difficulty (supports any miner hashrate)
-  - Shares are still calculated for stats/display, but no longer rejected based on difficulty threshold
-  - This allows the pool to track all mining activity from any miner, regardless of their hashrate
-  - Fixed difficulty calculation: Fixed mantissa normalization in logarithm calculation (mantissa now properly normalized to 0-1 range)
-  - Difficulty calculation now correctly uses: log10(difficulty) = log10(DIFF1_TARGET) - log10(hashValue) with proper mantissa/exponent separation
-  - Fixed difficulty calculation: Now uses logarithm-based calculation to handle very large hash values (prevents BigInt truncation to 0)
-  - Added Bitcoin node sync status checking (shows sync progress in server status)
-  - Added comprehensive debug logging for share submissions: parameters, block header construction, hash calculation, and difficulty calculation steps
-  - Debug logs now show: share params (jobId, extranonce2, ntime, nonce), block header details (version, prevHash, merkleRoot, timestamp, bits, nonce), hash value, and final difficulty calculation
-  - Fixed difficulty calculation: Now uses high-precision scale (1e18) to prevent BigInt truncation to 0
-  - Added detailed debug logging for difficulty calculation failures
-  - Fixed difficulty calculation bug: BigInt division was truncating to 0, now uses floating-point division
-  - Fixed difficulty calculation with improved error handling and validation
-  - Added detailed logging for difficulty calculation failures to diagnose share validation issues
-  - Enhanced block header validation to ensure proper share processing
-  - Added support for mining.extranonce.subscribe method (Stratum V1 extension)
-  - Added binary/SSL detection to identify miners trying to connect with SSL/TLS (server only supports plain TCP)
-  - Improved error messages for invalid protocol connections with hex preview
-  - Added hashrate calculation and display for each miner (based on recent shares)
-  - Added support for mining.configure method (Stratum V1 extension)
-  - Enhanced disconnection debugging with detailed diagnostics (duration, reason, state, activity)
-  - Improved message queue to prevent JSON parsing errors
-  - Added connection tracking (connection time, last activity, disconnect reason)
-  - Fixed "Extra data" JSON parsing error by properly separating authorization messages
-  - Improved message buffering to prevent multiple JSON messages from being concatenated
-  - Enhanced error logging for better debugging of miner connection issues
-  - Added real-time Stratum Activity Log with live streaming of miner connections, authorizations, and share submissions
-  - All shares are now recorded (including rejected ones) for better visibility
-  - Miners now appear in dashboard immediately upon connection (not just after submitting shares)
-  - Added Stratum TCP proxy service to expose port 3333 for miner connectivity
-  - Added configurable Bitcoin Network dropdown (Mainnet, Testnet, Regtest, Signet)
-  - Added configurable Stratum Difficulty setting for easier testing
-  - Improved server status reporting with RPC connectivity checks
-  - Fixed Stratum port mapping using dedicated proxy container
+  🎨 NEW: Custom Party Pool UI Dashboard!
+  - Built custom party-pool-ui Angular dashboard with real-time monitoring
+  - Shows Stratum connection info with copy-paste ready URL and connection instructions
+  - Displays all service statuses (Web, Stratum, Database, Bitcoin RPC) with color-coded indicators
+  - Pool statistics dashboard (total miners, shares, balance, pool status)
+  - Configuration display (network, difficulty, wallets, share window, confirmations)
+  - Auto-refresh every 5 seconds for live updates
+  - Modern gradient UI with responsive card layout
+  - Reused utility components from public-pool-ui for consistency
+  
+  💰 Donation Support:
+  - Added donation wallet configuration (default: bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh)
+  - Can be overridden via APP_DONATION_WALLET_ADDRESS environment variable
+  - Wallet address displayed on dashboard (masked for privacy)
+  
+  ✅ All features from v1.0.19 maintained:
+  - Full Stratum v1 server with mining.configure and mining.extranonce.subscribe support
+  - Accepts ALL shares (any difficulty) for comprehensive mining activity tracking
+  - Real-time hashrate calculation per miner
+  - Bitcoin RPC using rpc-bitcoin library (same as base-pool)
+  - Difficulty calculation using base-pool's proven big.js implementation
+  - Configurable network (Mainnet/Testnet/Regtest/Signet) and difficulty
+  - Dedicated Stratum TCP proxy on port 3333
 
 defaultPassword: ""
 
