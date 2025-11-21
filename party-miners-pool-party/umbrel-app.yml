@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.3"
+version: "1.0.5"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,6 +38,9 @@ gallery: []
 path: ""
 
 releaseNotes: >-
+  - Added real-time Stratum Activity Log with live streaming of miner connections, authorizations, and share submissions
+  - All shares are now recorded (including rejected ones) for better visibility
+  - Miners now appear in dashboard immediately upon connection (not just after submitting shares)
   - Added Stratum TCP proxy service to expose port 3333 for miner connectivity
   - Added configurable Bitcoin Network dropdown (Mainnet, Testnet, Regtest, Signet)
   - Added configurable Stratum Difficulty setting for easier testing
