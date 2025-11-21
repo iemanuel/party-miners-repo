@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.10"
+version: "1.0.13"
 
 tagline: Party Solo Pool - Share-based Bitcoin mining pool
 
@@ -38,6 +38,12 @@ gallery: []
 path: ""
 
 releaseNotes: >-
+  - Fixed difficulty calculation: Now uses high-precision scale (1e18) to prevent BigInt truncation to 0
+  - Added detailed debug logging for difficulty calculation failures
+  - Fixed difficulty calculation bug: BigInt division was truncating to 0, now uses floating-point division
+  - Fixed difficulty calculation with improved error handling and validation
+  - Added detailed logging for difficulty calculation failures to diagnose share validation issues
+  - Enhanced block header validation to ensure proper share processing
   - Added support for mining.extranonce.subscribe method (Stratum V1 extension)
   - Added binary/SSL detection to identify miners trying to connect with SSL/TLS (server only supports plain TCP)
   - Improved error messages for invalid protocol connections with hex preview
