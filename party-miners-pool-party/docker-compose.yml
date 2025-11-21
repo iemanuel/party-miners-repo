@@ -6,6 +6,8 @@ services:
       APP_HOST: server
       APP_PORT: 3334
       PROXY_AUTH_WHITELIST: "/api/*"
+    depends_on:
+      - server
 
   server:
     image: iemanuel18/party-pool:latest
@@ -18,9 +20,19 @@ services:
     volumes:
       - "${APP_DATA_DIR}/data:/app/data"
     environment:
-      # Bitcoin node connection (provided by Umbrel)
-      - APP_BITCOIN_NODE_IP=${APP_BITCOIN_NODE_IP}
-      - APP_BITCOIN_RPC_PORT=${APP_BITCOIN_RPC_PORT}
-      - APP_BITCOIN_RPC_USER=${APP_BITCOIN_RPC_USER}
-      - APP_BITCOIN_RPC_PASS=${APP_BITCOIN_RPC_PASS}
-      - APP_API_PORT=3334
+      # Server config
+      - NODE_ENV=production
+      # Bitcoin node connection (mapped from Umbrel variables)
+      - BITCOIN_RPC_URL=http://${APP_BITCOIN_NODE_IP}
+      - BITCOIN_RPC_USER=${APP_BITCOIN_RPC_USER}
+      - BITCOIN_RPC_PASSWORD=${APP_BITCOIN_RPC_PASS}
+      - BITCOIN_RPC_PORT=${APP_BITCOIN_RPC_PORT}
+      - BITCOIN_RPC_TIMEOUT=10000
+      # API and server ports
+      - API_PORT=3334
+      # Pool configuration
+      - NETWORK=mainnet
+      - API_SECURE=false
+      - ENABLE_PARTY_SOLO=true
+      - ENABLE_PROXY=false
+      - POOL_IDENTIFIER=Pool Party on Umbrel

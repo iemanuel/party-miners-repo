@@ -6,20 +6,30 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.0"
+version: "1.0.1"
 
-tagline: Party Solo Pool - Bitcoin RPC Status API
+tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
 description: >-
-  Party Solo Pool - Simple API to check Bitcoin node connection status.
+  Party Solo Pool allows multiple small miners to mine together as one solo miner, increasing the chances of finding blocks. All rewards go to the core wallet initially.
   
-  **Features:**
-  - Connects to Bitcoin node via Umbrel dependency
-  - Returns connection status and blockchain info
-  - Health check endpoint
+  **Phase 1 Features:**
+  - ✅ Connects to Bitcoin node via Umbrel dependency
+  - ✅ Returns connection status and blockchain info
+  - ✅ Health check endpoint (`/health`)
+  - ✅ Bitcoin node status endpoint (`/api/status`)
+  - ✅ Cookie file authentication support
+  - ✅ Proper error handling and logging
   
   **Configuration:**
   - Bitcoin RPC credentials are auto-configured when Bitcoin app is installed
+  - Supports cookie file authentication via `BITCOIN_RPC_COOKIEFILE`
+  - Network: mainnet (configurable via `NETWORK` env var)
+  
+  **Coming Soon (Phase 2):**
+  - Stratum server for miner connections
+  - Share tracking and validation
+  - Block submission when valid share found
 
 developer: iemanuel
 
@@ -39,12 +49,34 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🚀 v1.0.0 - Initial Release
+  🚀 v1.0.1 - Updated Release (Phase 1)
+  
+  **Improvements:**
+  - ✅ Enhanced Bitcoin RPC connection with cookie file support
+  - ✅ Improved environment variable handling
+  - ✅ Better error messages and logging
+  - ✅ Updated deployment configuration
+  
+  **Previous Release (v1.0.0):**
+  
+  **API Server:**
   - ✅ Simple API server for Bitcoin RPC status
   - ✅ Connects to Bitcoin node via Umbrel dependency
-  - ✅ Health check endpoint
-  - ✅ Bitcoin node status endpoint with connection info, block height, and sync progress
+  - ✅ Health check endpoint (`/health`)
+  - ✅ Bitcoin node status endpoint (`/api/status`)
+  - ✅ Cookie file authentication support
   - ✅ Proper error handling and logging
+  - ✅ Non-blocking startup (API starts immediately)
+  
+  **Configuration:**
+  - Auto-configured Bitcoin RPC credentials from Umbrel
+  - Supports `BITCOIN_RPC_COOKIEFILE` for cookie authentication
+  - Configurable via environment variables
+  
+  **Next Steps:**
+  - Phase 2: Stratum server implementation
+  - Phase 3: Share tracking and validation
+  - Phase 4: Block submission
 
 defaultPassword: ""
 
