@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.0.1"
+version: "1.0.2"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -49,13 +49,18 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🚀 v1.0.1 - Updated Release (Phase 1)
+  🚀 v1.0.2 - Cleanup Release (Phase 1)
   
   **Improvements:**
-  - ✅ Enhanced Bitcoin RPC connection with cookie file support
-  - ✅ Improved environment variable handling
-  - ✅ Better error messages and logging
-  - ✅ Updated deployment configuration
+  - ✅ Cleaned up configuration to use only working environment variables
+  - ✅ Simplified BitcoinRpcClient to match standard implementation pattern
+  - ✅ Removed unnecessary fallback logic and debug logging
+  - ✅ Code now matches base-pool reference implementation
+  
+  **Previous Release (v1.0.1):**
+  - Enhanced Bitcoin RPC connection with cookie file support
+  - Improved environment variable handling
+  - Better error messages and logging
   
   **Previous Release (v1.0.0):**
   
