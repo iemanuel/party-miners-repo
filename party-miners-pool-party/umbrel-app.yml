@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.1.0"
+version: "1.2.0"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -59,15 +59,26 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🚀 v1.1.0 - Dashboard UI Release (Phase 2 Part A)
+  🚀 v1.2.0 - Stratum Server Implementation (Phase 2 Part B - In Progress)
   
   **New Features:**
-  - ✅ Dashboard UI with real-time status updates
-  - ✅ Connection status card showing Bitcoin node status, block height, and sync progress
-  - ✅ Stratum connection info card with connection instructions for miners
-  - ✅ Real-time log streaming via Server-Sent Events (`/api/logs/stream`)
-  - ✅ API endpoint for stratum connection info (`/api/stratum-info`)
-  - ✅ Configurable ports via `APP_API_PORT` and `APP_STRATUM_PORT` environment variables
+  - ✅ Stratum server TCP socket server on port 3333
+  - ✅ JSON line protocol parsing with buffering
+  - ✅ mining.subscribe message handler
+  - ✅ mining.authorize message handler
+  - ✅ Session management with unique extranonce
+  - ✅ Socket timeout handling (5 minutes)
+  - ✅ Connection/disconnection management
+  - ✅ Increased log capacity to 5000 entries
+  - ✅ Dashboard shows all logs (up to 5000)
+  
+  **Previous Release (v1.1.0):**
+  - Dashboard UI with real-time status updates
+  - Connection status card showing Bitcoin node status, block height, and sync progress
+  - Stratum connection info card with connection instructions for miners
+  - Real-time log streaming via Server-Sent Events (`/api/logs/stream`)
+  - API endpoint for stratum connection info (`/api/stratum-info`)
+  - Configurable ports via `APP_API_PORT` and `APP_STRATUM_PORT` environment variables
   
   **Previous Release (v1.0.2):**
   - Cleaned up configuration to use only working environment variables
