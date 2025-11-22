@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.2.0"
+version: "1.2.1"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -29,6 +29,15 @@ description: >-
   - ✅ API endpoint for stratum info (`/api/stratum-info`)
   - ✅ Configurable ports via environment variables
   
+  **Phase 2 Part B Features (In Progress):**
+  - ✅ Stratum server TCP socket server on port 3333
+  - ✅ JSON line protocol parsing with buffering
+  - ✅ mining.subscribe and mining.authorize message handlers
+  - ✅ Session management with unique extranonce
+  - ✅ Socket timeout handling and connection management
+  - ✅ Stratum port exposed externally via stratum-proxy
+  - ✅ Increased log capacity to 5000 entries
+  
   **Configuration:**
   - Bitcoin RPC credentials are auto-configured when Bitcoin app is installed
   - Supports cookie file authentication via `BITCOIN_RPC_COOKIEFILE`
@@ -36,9 +45,9 @@ description: >-
   - API port: 3334 (configurable via `APP_API_PORT`)
   - Stratum port: 3333 (configurable via `APP_STRATUM_PORT`)
   
-  **Coming Soon (Phase 2 Part B):**
-  - Stratum server for miner connections
-  - Share tracking and validation
+  **Coming Soon:**
+  - Mining job management and block template creation
+  - Share validation and difficulty calculation
   - Block submission when valid share found
 
 developer: iemanuel
@@ -59,9 +68,14 @@ gallery: []
 path: ""
 
 releaseNotes: >-
-  🚀 v1.2.0 - Stratum Server Implementation (Phase 2 Part B - In Progress)
+  🚀 v1.2.1 - Stratum Server with External Port Exposure
   
   **New Features:**
+  - ✅ Stratum port exposed externally via stratum-proxy service
+  - ✅ Miners can now connect to stratum server from outside Docker network
+  - ✅ TCP proxy using socat for reliable connection forwarding
+  
+  **Previous Release (v1.2.0):**
   - ✅ Stratum server TCP socket server on port 3333
   - ✅ JSON line protocol parsing with buffering
   - ✅ mining.subscribe message handler
