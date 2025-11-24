@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.3.2"
+version: "1.4.1"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -78,76 +78,26 @@ port: 3334
 
 gallery: []
 
-path: ""
+path: "/"
 
 releaseNotes: >-
-  🚀 v1.3.0 - Mining Job Management & Configuration Dashboard
+  🎉 v1.4.0 - Phase 3: Database-Backed Pool & Miner Tracking
   
-  **New Features:**
-  - ✅ Mining job management with block template processing
-  - ✅ Coinbase transaction creation (BIP-34 + pool identifier)
-  - ✅ Merkle tree building using merkle-lib (base pool pattern)
-  - ✅ Job distribution to connected miners
-  - ✅ Configuration dashboard with persistence
-  - ✅ Config hot-reload (no restart needed for config changes)
-  - ✅ Default placeholder wallet address (app starts without config)
-  - ✅ mining.extranonce.subscribe protocol support
+  **Major Features:**
+  - ✅ PostgreSQL integration with TypeORM data source
+  - ✅ Persistent entities for miners, shares, blocks, and pool config
+  - ✅ Share tracking service wired into Stratum clients
+  - ✅ Duplicate share detection using per-session caches
+  - ✅ Initial reward and block recording pipeline
   
-  **Previous Release (v1.2.1):**
-  - ✅ Stratum port exposed externally via stratum-proxy service
-  - ✅ Miners can now connect to stratum server from outside Docker network
-  - ✅ TCP proxy using socat for reliable connection forwarding
+  **Migrations & Config:**
+  - ✅ Database migrations for core tables and config seeding
+  - ✅ Config service now backed by the database
+  - ✅ Migration scripts (`npm run migration:run`, `npm run migration:revert`)
   
-  **Previous Release (v1.2.0):**
-  - ✅ Stratum server TCP socket server on port 3333
-  - ✅ JSON line protocol parsing with buffering
-  - ✅ mining.subscribe message handler
-  - ✅ mining.authorize message handler
-  - ✅ Session management with unique extranonce
-  - ✅ Socket timeout handling (5 minutes)
-  - ✅ Connection/disconnection management
-  - ✅ Increased log capacity to 5000 entries
-  - ✅ Dashboard shows all logs (up to 5000)
-  
-  **Previous Release (v1.1.0):**
-  - Dashboard UI with real-time status updates
-  - Connection status card showing Bitcoin node status, block height, and sync progress
-  - Stratum connection info card with connection instructions for miners
-  - Real-time log streaming via Server-Sent Events (`/api/logs/stream`)
-  - API endpoint for stratum connection info (`/api/stratum-info`)
-  - Configurable ports via `APP_API_PORT` and `APP_STRATUM_PORT` environment variables
-  
-  **Previous Release (v1.0.2):**
-  - Cleaned up configuration to use only working environment variables
-  - Simplified BitcoinRpcClient to match standard implementation pattern
-  - Removed unnecessary fallback logic and debug logging
-  - Code now matches base-pool reference implementation
-  
-  **Previous Release (v1.0.1):**
-  - Enhanced Bitcoin RPC connection with cookie file support
-  - Improved environment variable handling
-  - Better error messages and logging
-  
-  **Previous Release (v1.0.0):**
-  
-  **API Server:**
-  - ✅ Simple API server for Bitcoin RPC status
-  - ✅ Connects to Bitcoin node via Umbrel dependency
-  - ✅ Health check endpoint (`/health`)
-  - ✅ Bitcoin node status endpoint (`/api/status`)
-  - ✅ Cookie file authentication support
-  - ✅ Proper error handling and logging
-  - ✅ Non-blocking startup (API starts immediately)
-  
-  **Configuration:**
-  - Auto-configured Bitcoin RPC credentials from Umbrel
-  - Supports `BITCOIN_RPC_COOKIEFILE` for cookie authentication
-  - Configurable via environment variables
-  
-  **Next Steps:**
-  - Phase 2: Stratum server implementation
-  - Phase 3: Share tracking and validation
-  - Phase 4: Block submission
+  **Foundation for Stats:**
+  - ⚙️ Groundwork for per-miner hashrate and block history APIs
+  - ⚙️ Prepares Phase 4 pool and miner statistics endpoints
 
 defaultPassword: ""
 

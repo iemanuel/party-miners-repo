@@ -7,7 +7,8 @@ services:
       APP_PORT: ${APP_API_PORT:-3334}
       PROXY_AUTH_WHITELIST: "/api/*"
     depends_on:
-      - server
+      server:
+        condition: service_started
 
   server:
     image: iemanuel18/party-pool:latest
@@ -16,8 +17,8 @@ services:
     stop_grace_period: 30s
     init: true
     expose:
-      - "${APP_API_PORT:-3334}"
-      - "${APP_STRATUM_PORT:-3333}"
+      - "3334"
+      - "3333"
     volumes:
       - "${APP_DATA_DIR}/data:/app/data"
     environment:
@@ -31,20 +32,12 @@ services:
       - BITCOIN_RPC_TIMEOUT=10000
       # API and server ports
       - API_PORT=${APP_API_PORT:-3334}
-      - STRATUM_PORT=${APP_STRATUM_PORT:-3333}
-      # Pool configuration
-      - NETWORK=testnet
-      - CORE_WALLET_ADDRESS=n33npN2oRNJFFpdoxkrm2CVyZAfRGFxALt
-      - API_SECURE=false
-      - ENABLE_PARTY_SOLO=true
-      - ENABLE_PROXY=false
-      - POOL_IDENTIFIER=Pool Party on Umbrel
       # Database configuration
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${APP_POSTGRES_PASSWORD}
-      - POSTGRES_DB=pool_party
+      - APP_POSTGRES_HOST=postgres
+      - APP_POSTGRES_PORT=5432
+      - APP_POSTGRES_USER=postgres
+      - APP_POSTGRES_PASSWORD=${APP_POSTGRES_PASSWORD:-dbpassword1234}
+      - APP_POSTGRES_DB=pool_party
     depends_on:
       postgres:
         condition: service_healthy
