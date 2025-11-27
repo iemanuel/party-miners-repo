@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.4.1"
+version: "1.5.1"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -81,23 +81,47 @@ gallery: []
 path: "/"
 
 releaseNotes: >-
-  🎉 v1.4.0 - Phase 3: Database-Backed Pool & Miner Tracking
+  🎯 v1.5.1 - Dashboard Hashrate Display & Average Statistics
   
-  **Major Features:**
-  - ✅ PostgreSQL integration with TypeORM data source
-  - ✅ Persistent entities for miners, shares, blocks, and pool config
-  - ✅ Share tracking service wired into Stratum clients
-  - ✅ Duplicate share detection using per-session caches
-  - ✅ Initial reward and block recording pipeline
+  **New Features:**
+  - ✨ Live hashrate display in dashboard (updates every 60s from actual mining data)
+  - ✨ Average hashrate cards: 5-minute, 15-minute, and 30-minute rolling averages
+  - ✨ Miner status tracking (Active/Inactive based on connection state)
+  - ✨ Real-time miner statistics: hashrate, shares, difficulty, last seen
   
-  **Migrations & Config:**
-  - ✅ Database migrations for core tables and config seeding
-  - ✅ Config service now backed by the database
-  - ✅ Migration scripts (`npm run migration:run`, `npm run migration:revert`)
+  **Fixed:**
+  - 🐛 Dashboard now shows current hashrate (was only logging, not saving to DB)
+  - 🐛 Miner hashrate updates every 60 seconds in database
+  - 🐛 Active/inactive status properly tracked on connect/disconnect
+  - 🐛 Pool statistics endpoint for dashboard metrics
   
-  **Foundation for Stats:**
-  - ⚙️ Groundwork for per-miner hashrate and block history APIs
-  - ⚙️ Prepares Phase 4 pool and miner statistics endpoints
+  **API Enhancements:**
+  - 📊 New endpoint: GET /api/pool/stats (returns average hashrates and pool stats)
+  - 📊 Enhanced: GET /api/miners (now includes live hashrate from database)
+  - 📊 Auto-refresh: Dashboard polls every 5-10 seconds for live updates
+  
+  **Technical Improvements:**
+  - ⚙️ ShareService.updateMinerHashrate() saves calculated hashrate to DB
+  - ⚙️ ShareService.updateMinerStatus() tracks miner connection state
+  - ⚙️ ShareService.getAverageHashrate() calculates rolling averages
+  - ⚙️ ShareService.getPoolStats() provides complete pool statistics
+  - ⚙️ Async logStatistics() now persists data to database
+  
+  **Dashboard UI:**
+  - 🎨 Three prominent average hashrate cards (5M/15M/30M AVG)
+  - 🎨 Miners table shows live hashrate, shares, and status
+  - 🎨 Auto-formatted display (TH/s, GH/s, MH/s, etc.)
+  - 🎨 Blue-colored hashrate values for visual clarity
+  
+  **Previous v1.5.0 Features (included):**
+  - ✅ Database connection pooling with retry logic
+  - ✅ PostgreSQL keepalive and idle connection management
+  - ✅ Automatic reconnection after transient network issues
+  - ✅ Graceful shutdown handling (SIGTERM/SIGINT)
+  - ✅ Database health check endpoint (/health/db)
+  - ✅ Docker healthcheck with 60s startup grace period
+  - ✅ Configuration form in dashboard
+  - ✅ Full-width responsive layout
 
 defaultPassword: ""
 

@@ -13,7 +13,7 @@ services:
   server:
     image: iemanuel18/party-pool:latest
     hostname: pool-party
-    restart: on-failure
+    restart: unless-stopped
     stop_grace_period: 30s
     init: true
     expose:
@@ -29,7 +29,7 @@ services:
       - BITCOIN_RPC_USER=${APP_BITCOIN_RPC_USER}
       - BITCOIN_RPC_PASSWORD=${APP_BITCOIN_RPC_PASS}
       - BITCOIN_RPC_PORT=${APP_BITCOIN_RPC_PORT}
-      - BITCOIN_RPC_TIMEOUT=10000
+      - BITCOIN_RPC_TIMEOUT=30000
       # API and server ports
       - API_PORT=${APP_API_PORT:-3334}
       # Database configuration
@@ -41,6 +41,12 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3334/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
   stratum-proxy:
     # Expose stratum port externally
