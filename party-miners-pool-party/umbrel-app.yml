@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.5.6"
+version: "1.6.0"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -81,9 +81,21 @@ gallery: []
 path: "/"
 
 releaseNotes: >-
-  🎯 v1.5.2 - Authorization Fix & Enhanced Compatibility
+  🎯 v1.5.9 - Hashrate Calculation Fix (10-Minute Window)
   
   **Fixed:**
+  - 🐛 Fixed inflated hashrate display (was showing 1000+ TH/s for small miners)
+  - 🐛 Hashrate now uses 10-minute rolling time window (matches old base-pool)
+  - 🐛 Accurate real-time hashrate based on recent mining performance
+  - 🐛 Automatic pruning of shares older than 10 minutes
+  
+  **Technical Changes:**
+  - ⚙️ ClientStatistics now maintains separate hashrate cache (10-minute window)
+  - ⚙️ Formula: (difficultySum * 2^32) / timeInSeconds over 10-minute window
+  - ⚙️ Shares older than 10 minutes automatically filtered out
+  - ⚙️ Matches old base-pool implementation exactly
+  
+  **Previous v1.5.8 Features:**
   - 🐛 Fixed "Invalid address" error when miners send authorization in single-parameter format
   - 🐛 Now supports both authorization formats: "address.workername" and ["address", "workername"]
   - 🐛 Properly parses worker names from combined address.worker format
