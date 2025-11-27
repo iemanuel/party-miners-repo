@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.5.1"
+version: "1.5.4"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -81,11 +81,18 @@ gallery: []
 path: "/"
 
 releaseNotes: >-
-  🎯 v1.5.1 - Dashboard Hashrate Display & Average Statistics
+  🎯 v1.5.2 - Authorization Fix & Enhanced Compatibility
   
-  **New Features:**
+  **Fixed:**
+  - 🐛 Fixed "Invalid address" error when miners send authorization in single-parameter format
+  - 🐛 Now supports both authorization formats: "address.workername" and ["address", "workername"]
+  - 🐛 Properly parses worker names from combined address.worker format
+  - 🐛 Enhanced miner compatibility with various mining software
+  
+  **Previous v1.5.1 Features:**
   - ✨ Live hashrate display in dashboard (updates every 60s from actual mining data)
   - ✨ Average hashrate cards: 5-minute, 15-minute, and 30-minute rolling averages
+  - ✨ Per-miner average statistics (Current, 5M AVG, 15M AVG, 30M AVG)
   - ✨ Miner status tracking (Active/Inactive based on connection state)
   - ✨ Real-time miner statistics: hashrate, shares, difficulty, last seen
   
