@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.8.5"
+version: "1.8.7"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -81,6 +81,35 @@ gallery: []
 path: "/"
 
 releaseNotes: >-
+  🎯 v1.8.7 - Modern Mining Pool UI
+  
+  **New:**
+  - ✨ Modern crypto mining pool interface with sidebar navigation
+  - ✨ Separate pages: Dashboard, Miners, Pool, Logs, Settings
+  - ✨ Block reward distribution chart showing miner contributions
+  - ✨ Individual miner statistics pages with detailed info
+  - ✨ Session details for each miner (expandable)
+  - ✨ VarDiff configuration in Pool settings
+  - ✨ Wallet configuration in Pool settings
+  - ✨ Dangerous actions section (clear stats, reset DB)
+  
+  **UI Improvements:**
+  - 🎨 Dark theme with shadcn components
+  - 🎨 Skeleton loaders for smooth loading states
+  - 🎨 Responsive design with modern aesthetics
+  - 🎨 Optimized API calls with caching (2s TTL)
+  
+  🎯 v1.8.6 - Frontend Integration
+  
+  **New:**
+  - ✨ Integrated Next.js frontend into server container
+  - ✨ Single unified image with API and UI
+  - ✨ Optimized Docker build with separate frontend/server stages
+  
+  **Fixed:**
+  - 🐛 Static file serving path resolution
+  - 🐛 Route ordering (API routes before static files)
+  
   🎯 v1.5.9 - Hashrate Calculation Fix (10-Minute Window)
   
   **Fixed:**

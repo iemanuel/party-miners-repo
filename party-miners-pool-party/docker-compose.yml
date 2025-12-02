@@ -11,7 +11,7 @@ services:
         condition: service_started
 
   server:
-    image: iemanuel18/party-pool:latest
+    image: iemanuel18/public-pool-party:latest
     hostname: pool-party
     restart: unless-stopped
     stop_grace_period: 30s
