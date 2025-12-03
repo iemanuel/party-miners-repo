@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.8.8"
+version: "1.8.9"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -81,15 +81,17 @@ gallery: []
 path: "/"
 
 releaseNotes: >-
-  🎯 v1.8.8 - Docker build & routing fixes
+  🎯 v1.8.9 - Persistent stats & export-safe miners page
   
   **New:**
-  - ✨ Updated Docker image build pipeline for Umbrel
-  - ✨ Cleaned up conflicting miner detail routes
+  - ✨ Postgres data stored under APP_DATA_DIR for Umbrel-safe persistence
+  - ✨ Miners page refactored to be compatible with static export (Next.js `output: export`)
   
   **Changes:**
-  - ⚙️ Dynamic miner detail page is currently disabled in the static export (Umbrel build) to satisfy Next.js `output: export` constraints
-  - ⚙️ Dashboard, Miners list, Pool, Logs, and Settings remain fully functional
+  - ⚙️ Stats survive app upgrades and image updates (as long as APP_DATA_DIR is preserved)
+  - ⚙️ Miners detail is still fully dynamic via client-side API calls
+  
+  🎯 v1.8.8 - Docker build & routing fixes
   
   🎯 v1.8.7 - Modern Mining Pool UI
   
