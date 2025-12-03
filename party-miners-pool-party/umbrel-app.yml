@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.8.9"
+version: "1.8.10"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -81,6 +81,11 @@ gallery: []
 path: "/"
 
 releaseNotes: >-
+  🎯 v1.8.10 - Install robustness
+  
+  **Fixed:**
+  - 🐛 Added safe default for Postgres password so first install can't fail if Umbrel doesn't preseed APP_POSTGRES_PASSWORD
+  
   🎯 v1.8.9 - Persistent stats & export-safe miners page
   
   **New:**
