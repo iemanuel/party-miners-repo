@@ -19,6 +19,7 @@ services:
     expose:
       - "3334"
       - "3333"
+      - "4333"
     volumes:
       - "${APP_DATA_DIR}/data:/app/data"
     environment:
@@ -55,6 +56,16 @@ services:
     ports:
       - "3333:3333"
     command: "tcp-listen:3333,fork,reuseaddr tcp-connect:server:3333"
+    depends_on:
+      - server
+
+  stratum-proxy-lowpower:
+    # Expose low-power stratum port externally (nerd miner, etc.)
+    image: alpine/socat:latest
+    restart: unless-stopped
+    ports:
+      - "4333:4333"
+    command: "tcp-listen:4333,fork,reuseaddr tcp-connect:server:4333"
     depends_on:
       - server
 

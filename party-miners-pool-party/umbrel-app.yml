@@ -6,7 +6,7 @@ category: bitcoin
 
 name: Pool Party
 
-version: "1.8.13"
+version: "1.8.14"
 
 tagline: Party Solo Pool - Multiple miners mining together as one solo miner
 
@@ -31,11 +31,12 @@ description: >-
   
   **Phase 2 Part B Features (v1.3.0):**
   - ✅ Stratum server TCP socket server on port 3333
+  - ✅ Low-power stratum server on port 4333 (nerd miner support with diff 0.00025)
   - ✅ JSON line protocol parsing with buffering
   - ✅ mining.subscribe, mining.authorize, mining.configure, mining.extranonce.subscribe handlers
   - ✅ Session management with unique extranonce
   - ✅ Socket timeout handling and connection management
-  - ✅ Stratum port exposed externally via stratum-proxy
+  - ✅ Stratum ports exposed externally via stratum-proxy services
   - ✅ Mining job management with block template processing
   - ✅ Coinbase transaction creation (BIP-34 + pool identifier)
   - ✅ Merkle tree building using merkle-lib (base pool pattern)
@@ -56,6 +57,7 @@ description: >-
   - Core wallet address: configurable via dashboard (required for mining jobs)
   - API port: 3334 (configurable via `APP_API_PORT`)
   - Stratum port: 3333 (configurable via `APP_STRATUM_PORT`)
+  - Low-power stratum port: 4333 (for nerd miner and low-power devices)
   - Config changes apply immediately (hot-reload, no restart needed)
   
   **Coming Soon:**
